@@ -71,6 +71,7 @@
     "cross-env": "^7.0.3",
     "electron": "^23.3.13",
     "electron-builder": "^23.6.0",
+    "sass": "^1.77.8",
     "wait-on": "^7.0.1"
   }
 }
