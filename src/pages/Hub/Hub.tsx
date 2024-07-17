@@ -1,4 +1,4 @@
-import '@styles/styles/pages/Hub.scss';
+import '@styles/pages/Hub.scss';
 
 function Hub() {
   return (
