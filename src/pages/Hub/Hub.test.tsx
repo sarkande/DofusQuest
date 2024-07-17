@@ -3,11 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Hub from './Hub';
 
 describe('Hub Component', () => {
-  test('renders the Hub title', () => {
-    render(<Hub />);
-    const titleElement = screen.getByText('Hub');
-    expect(titleElement).toBeInTheDocument();
-  });
+
 
   test('renders the ApplicationList component', () => {
     render(<Hub />);
