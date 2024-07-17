@@ -1,0 +1,33 @@
+.application-item {
+  display: inline-block;
+  text-align: center;
+  margin: 10px;
+
+  &__container {
+    margin: 0;
+    padding: 0;
+    position: relative;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.05);
+    }
+
+    &--icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, hsl(210, 100%, 42%) 0%, hsl(210, 100%, 38%) 100%);
+      &:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &--title {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #333;
+      font-family: "Roboto", sans-serif;
+    }
+  }
+}

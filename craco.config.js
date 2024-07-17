@@ -7,4 +7,15 @@ module.exports = {
       "@interfaces": path.resolve(__dirname, "src/interfaces"),
     },
   },
+  jest: {
+    configure: {
+      moduleNameMapper: {
+        "^@styles/(.*)$": "<rootDir>/src/assets/styles/$1",
+        "^@interfaces/(.*)$": "<rootDir>/src/interfaces/$1",
+      },
+      transform: {
+        "^.+\\.(ts|tsx)$": "ts-jest",
+      },
+    },
+  },
 };

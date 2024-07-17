@@ -1,0 +1,20 @@
+.application-list {
+  box-sizing: border-box;
+  border: 1px solid rgb(223, 226, 231);
+  border-radius: 12px;
+  border-image: none 100% / 1 / 0 stretch;
+
+  max-width: 310px;
+  &__title {
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+    font-size: 20px;
+    color: #333;
+    text-align: center;
+  }
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    justify-items: center;
+  }
+}
