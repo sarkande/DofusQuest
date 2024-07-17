@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 
@@ -6,9 +6,12 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    alwaysOnTop: true, // Ajoutez cette ligne pour garder la fenêtre en premier plan
     webPreferences: {
       // contextIsolation: false,
       preload: path.join(__dirname, "preload.js"),
+      nodeIntegration: true,
+      contextIsolation: false, // Assurez-vous que contextIsolation est false pour IPC
     },
   });
 
@@ -28,14 +31,36 @@ function createWindow() {
     });
   }
 }
+function createChildWindow(route: string) {
+  const childWin = new BrowserWindow({
+    width: 800,
+    height: 600,
+    alwaysOnTop: true, // Ajoutez cette ligne pour garder la fenêtre en premier plan
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
+
+  if (app.isPackaged) {
+    childWin.loadURL(`file://${__dirname}/../index.html#/${route}`);
+  } else {
+    childWin.loadURL(`http://localhost:3000/#/${route}`);
+    childWin.webContents.openDevTools();
+  }
+}
 
 app.whenReady().then(() => {
-  // DevTools
   installExtension(REACT_DEVELOPER_TOOLS)
     .then((name) => console.log(`Added Extension:  ${name}`))
     .catch((err) => console.log("An error occurred: ", err));
 
   createWindow();
+
+  ipcMain.on("open-new-window", (event, route) => {
+    createChildWindow(route);
+  });
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
