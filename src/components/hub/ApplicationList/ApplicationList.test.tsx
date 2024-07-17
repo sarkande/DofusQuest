@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import Hub from './Hub';
+import ApplicationList from './ApplicationList';
 
 test('renders learn react link', () => {
-  render(<Hub />);
+  render(<ApplicationList />);
+ 
 });

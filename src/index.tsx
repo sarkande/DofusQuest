@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './assets/styles/pages/index.css';
+import '@styles/pages/index.scss';
 import Hub from './pages/Hub/Hub';
 import reportWebVitals from './reportWebVitals';
 
