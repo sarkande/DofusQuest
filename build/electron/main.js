@@ -3,6 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var electron_1 = require("electron");
 var path = require("path");
 var electron_devtools_installer_1 = require("electron-devtools-installer");
+var applications_settings_1 = require("./class/applications_settings");
+console.log("Hello from Electron");
+var applicationSettings = new applications_settings_1.ApplicationSettings();
 function createWindow() {
     var win = new electron_1.BrowserWindow({
         width: 800,

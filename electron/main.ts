@@ -1,6 +1,10 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
+import { ApplicationSettings } from "./class/applications_settings";
+
+console.log("Hello from Electron");
+const applicationSettings = new ApplicationSettings();
 
 function createWindow() {
   const win = new BrowserWindow({

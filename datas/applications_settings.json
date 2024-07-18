@@ -1,0 +1,65 @@
+[
+    {
+        "title": "Dofus Quest",
+        "imageSrc": "https://via.placeholder.com/150",
+        "route": "/dofus-quest",
+        "windowSize": {
+            "width": 800,
+            "height": 600
+        }
+    },
+    {
+        "title": "Better Naio",
+        "imageSrc": "https://via.placeholder.com/150",
+        "route": "/better-naio",
+        "windowSize": {
+            "width": 800,
+            "height": 600
+        }
+    },
+    {
+        "title": "Craft",
+        "imageSrc": "https://via.placeholder.com/150",
+        "route": "/craft",
+        "windowSize": {
+            "width": 800,
+            "height": 600
+        }
+    },
+    {
+        "title": "Almanax",
+        "imageSrc": "https://via.placeholder.com/150",
+        "route": "/almanax",
+        "windowSize": {
+            "width": 800,
+            "height": 600
+        }
+    },
+    {
+        "title": "Tuto",
+        "imageSrc": "https://via.placeholder.com/150",
+        "route": "/tuto",
+        "windowSize": {
+            "width": 800,
+            "height": 600
+        }
+    },
+    {
+        "title": "Notes",
+        "imageSrc": "https://via.placeholder.com/150",
+        "route": "/notes",
+        "windowSize": {
+            "width": 800,
+            "height": 600
+        }
+    },
+    {
+        "title": "Portal",
+        "imageSrc": "https://via.placeholder.com/150",
+        "route": "/portal",
+        "windowSize": {
+            "width": 800,
+            "height": 600
+        }
+    }
+]

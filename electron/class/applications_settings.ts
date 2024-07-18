@@ -13,36 +13,32 @@ export class ApplicationSettings {
 
     this.applicationSettings.push(newApplicationSetting);
   }
-  fetchApplicationSettings() {
-    //Load json file at datas/applications_settings.json
-    // then serialize it to ApplicationSettingItem
-    fetch("datas/applications_settings.json")
-      .then((response) => {
-        //check if the response is ok and a valid json file
-        if (response.status !== 200) {
-          throw new Error("Can't fetch datas/applications_settings.json");
-        }
 
-        let data = response.json();
-        if (data === null) {
-          throw new Error("Can't parse datas/applications_settings.json into json");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (!data) {
-          throw new Error("No data found in datas/applications_settings.json");
-        }
+  async fetchApplicationSettings() {
+    try {
+      console.log("Current working directory:", process.cwd());
 
-        data.forEach((applicationSetting: IApplicationSettingItem) => {
-          //check if the data is valid using the interface then create a new ApplicationSettingItem
-          if (this.isValidApplicationSettingItem(applicationSetting)) this.addApplicationSetting(applicationSetting);
-          else throw new Error("Invalid application setting item");
-        });
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+      // Lire le fichier JSON avec fs.promises.readFile
+      const data = await fs.promises.readFile("datas/applications_settings.json", { encoding: "utf-8" });
+
+      // Parser le JSON
+      const applicationSettings = JSON.parse(data);
+
+      if (!applicationSettings) {
+        throw new Error("No data found in datas/applications_settings.json");
+      }
+
+      // Vérifier et ajouter chaque élément de réglage d'application
+      applicationSettings.forEach((applicationSetting: IApplicationSettingItem) => {
+        if (this.isValidApplicationSettingItem(applicationSetting)) {
+          this.addApplicationSetting(applicationSetting);
+        } else {
+          throw new Error("Invalid application setting item");
+        }
       });
+    } catch (error) {
+      console.error("Error:", error);
+    }
   }
   isValidApplicationSettingItem(item: any): item is IApplicationSettingItem {
     const windowSizeKeys: (keyof IApplicationSettingItem["windowSize"])[] = ["width", "height"];
