@@ -2,7 +2,7 @@
   import ReactDOM from 'react-dom/client';
   import '@styles/pages/index.scss';
   import reportWebVitals from './reportWebVitals';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+  import { HashRouter as Router, Route, Routes } from 'react-router-dom';
   import '@styles/pages/index.scss';
   import Hub from './pages/Hub/Hub';
   import NotFound from 'pages/Error/NotFound';
