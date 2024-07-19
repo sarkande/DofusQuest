@@ -5,6 +5,7 @@
   import { HashRouter as Router, Route, Routes } from 'react-router-dom';
   import '@styles/pages/index.scss';
   import Hub from './pages/Hub/Hub';
+  import Settings from 'pages/Settings/Settings';
   import NotFound from 'pages/Error/NotFound';
 
   const root = ReactDOM.createRoot(document.getElementById('root')!);
@@ -13,8 +14,10 @@
       <Router>
         <Routes>
           <Route path="/" element={<Hub />} />
+          <Route path="/hub" element={<Hub />} />
           <Route path="/dofus-quest" element={<NotFound />} />
           <Route path="/better-naio" element={<NotFound />} />
+          <Route path="/settings" element={<Settings />} />
           {/* Ajoutez d'autres routes ici */}
           <Route path="*" element={<NotFound />} />
         </Routes>

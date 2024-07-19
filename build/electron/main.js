@@ -10,7 +10,7 @@ var applicationSettings = new applications_settings_1.ApplicationSettings();
 function createWindow() {
     var win = new electron_1.BrowserWindow({
         width: 800,
-        height: 600,
+        height: 420,
         alwaysOnTop: true,
         webPreferences: {
             // contextIsolation: false,

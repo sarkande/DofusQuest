@@ -11,7 +11,7 @@ const applicationSettings = new ApplicationSettings();
 function createWindow() {
   const win = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 420,
     alwaysOnTop: true, // Ajoutez cette ligne pour garder la fenêtre en premier plan
     webPreferences: {
       // contextIsolation: false,

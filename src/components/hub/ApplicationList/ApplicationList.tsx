@@ -1,16 +1,26 @@
 import '@styles/components/ApplicationList.scss';
 import ApplicationItem from '../ApplicationItem/ApplicationItem';
 import { ApplicationItemProps } from '@interfaces/ApplicationItem';
+import questIcon from 'assets/images/icon_quest.png';
+import naioIcon from 'assets/images/icon_naio.png';
+import craftIcon from 'assets/images/icon_craft.png';
+import almanaxIcon from 'assets/images/icon_almanax.png';
+import tutoIcon from 'assets/images/icon_tuto.png';
+import notesIcon from 'assets/images/icon_notes.png';
+import portalIcon from 'assets/images/icon_portal.png';
+import settingsIcon from 'assets/images/icon_settings.png';
+
 
 function ApplicationList() {
   let applicationList:ApplicationItemProps[] = [
-    { imageSrc: 'https://via.placeholder.com/150', title: 'Dofus Quest', route: '/dofus-quest' },
-    { imageSrc: 'https://via.placeholder.com/150', title: 'Better Naio', route: '/better-naio' },
-    { imageSrc: 'https://via.placeholder.com/150', title: 'Craft', route: '/craft' },
-    { imageSrc: 'https://via.placeholder.com/150', title: 'Almanax', route: '/almanax' },
-    { imageSrc: 'https://via.placeholder.com/150', title: 'Tuto', route: '/tuto' },
-    { imageSrc: 'https://via.placeholder.com/150', title: 'Notes', route: '/notes' },
-    { imageSrc: 'https://via.placeholder.com/150', title: 'Portal', route: '/portal' },
+    { imageSrc: questIcon, title: 'Dofus Quest', route: '/dofus-quest' },
+    { imageSrc: naioIcon, title: 'Better Naio', route: '/better-naio' },
+    { imageSrc: craftIcon, title: 'Craft', route: '/craft' },
+    { imageSrc: almanaxIcon, title: 'Almanax', route: '/almanax' },
+    { imageSrc: tutoIcon, title: 'Tuto', route: '/tuto' },
+    { imageSrc: notesIcon, title: 'Notes', route: '/notes' },
+    { imageSrc: portalIcon, title: 'Portal', route: '/portal' },
+    { imageSrc: settingsIcon, title: 'Paramètres', route: '/settings', internal: true },
 
   ];
 
