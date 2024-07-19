@@ -2,8 +2,10 @@ import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 import { ApplicationSettings } from "./class/applications_settings";
+import { logger } from "./class/logger";
 
 console.log("Hello from Electron");
+logger.log("Hello from Logger");
 const applicationSettings = new ApplicationSettings();
 
 function createWindow() {
@@ -36,9 +38,13 @@ function createWindow() {
   }
 }
 function createChildWindow(route: string) {
+  const applicationSettingItem = applicationSettings.findApplicationSettingItemByRoute(route);
+  if (!applicationSettingItem) throw new Error("Invalid route");
+
   const childWin = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: applicationSettingItem.windowSize.width,
+    height: applicationSettingItem.windowSize.height,
+    title: applicationSettingItem.title,
     alwaysOnTop: true, // Ajoutez cette ligne pour garder la fenêtre en premier plan
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -56,14 +62,20 @@ function createChildWindow(route: string) {
 }
 
 app.whenReady().then(() => {
-  installExtension(REACT_DEVELOPER_TOOLS)
-    .then((name) => console.log(`Added Extension:  ${name}`))
-    .catch((err) => console.log("An error occurred: ", err));
+  // installExtension(REACT_DEVELOPER_TOOLS)
+  //   .then((name) => console.log(`Added Extension:  ${name}`))
+  //   .catch((err) => console.log("An error occurred: ", err));
 
   createWindow();
 
   ipcMain.on("open-new-window", (event, route) => {
     createChildWindow(route);
+  });
+  ipcMain.on("get-application-settings", (event) => {
+    event.returnValue = applicationSettings.applicationSettings;
+  });
+  ipcMain.on("edit-application-setting-item", (event, applicationSettingItem) => {
+    applicationSettings.editApplicationSettingItem(applicationSettingItem);
   });
 
   app.on("activate", () => {

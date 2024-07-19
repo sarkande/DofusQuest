@@ -12,6 +12,10 @@ export class ApplicationSettings {
     const newApplicationSetting = new ApplicationSettingItem(applicationSettingItem);
 
     this.applicationSettings.push(newApplicationSetting);
+    console.log("Application setting added:", newApplicationSetting.title);
+  }
+  findApplicationSettingItemByRoute(route: string): ApplicationSettingItem | false {
+    return this.applicationSettings.find((item) => item.route === route) ?? false;
   }
 
   async fetchApplicationSettings() {

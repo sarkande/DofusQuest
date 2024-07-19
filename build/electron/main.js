@@ -2,9 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var electron_1 = require("electron");
 var path = require("path");
-var electron_devtools_installer_1 = require("electron-devtools-installer");
 var applications_settings_1 = require("./class/applications_settings");
+var logger_1 = require("./class/logger");
 console.log("Hello from Electron");
+logger_1.logger.log("Hello from Logger");
 var applicationSettings = new applications_settings_1.ApplicationSettings();
 function createWindow() {
     var win = new electron_1.BrowserWindow({
@@ -34,9 +35,13 @@ function createWindow() {
     }
 }
 function createChildWindow(route) {
+    var applicationSettingItem = applicationSettings.findApplicationSettingItemByRoute(route);
+    if (!applicationSettingItem)
+        throw new Error("Invalid route");
     var childWin = new electron_1.BrowserWindow({
-        width: 800,
-        height: 600,
+        width: applicationSettingItem.windowSize.width,
+        height: applicationSettingItem.windowSize.height,
+        title: applicationSettingItem.title,
         alwaysOnTop: true,
         webPreferences: {
             preload: path.join(__dirname, "preload.js"),
@@ -53,12 +58,18 @@ function createChildWindow(route) {
     }
 }
 electron_1.app.whenReady().then(function () {
-    (0, electron_devtools_installer_1.default)(electron_devtools_installer_1.REACT_DEVELOPER_TOOLS)
-        .then(function (name) { return console.log("Added Extension:  ".concat(name)); })
-        .catch(function (err) { return console.log("An error occurred: ", err); });
+    // installExtension(REACT_DEVELOPER_TOOLS)
+    //   .then((name) => console.log(`Added Extension:  ${name}`))
+    //   .catch((err) => console.log("An error occurred: ", err));
     createWindow();
     electron_1.ipcMain.on("open-new-window", function (event, route) {
         createChildWindow(route);
+    });
+    electron_1.ipcMain.on("get-application-settings", function (event) {
+        event.returnValue = applicationSettings.applicationSettings;
+    });
+    electron_1.ipcMain.on("edit-application-setting-item", function (event, applicationSettingItem) {
+        applicationSettings.editApplicationSettingItem(applicationSettingItem);
     });
     electron_1.app.on("activate", function () {
         if (electron_1.BrowserWindow.getAllWindows().length === 0) {
