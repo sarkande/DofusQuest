@@ -4,6 +4,7 @@ module.exports = {
   webpack: {
     alias: {
       "@styles": path.resolve(__dirname, "src/assets/styles"),
+      "@images": path.resolve(__dirname, "src/assets/images"),
       "@interfaces": path.resolve(__dirname, "src/interfaces"),
     },
     configure: (webpackConfig) => {
@@ -25,6 +26,7 @@ module.exports = {
     configure: {
       moduleNameMapper: {
         "^@styles/(.*)$": "<rootDir>/src/assets/styles/$1",
+        "^@images/(.*)$": "<rootDir>/src/assets/images/$1",
         "^@interfaces/(.*)$": "<rootDir>/src/interfaces/$1",
       },
       transform: {

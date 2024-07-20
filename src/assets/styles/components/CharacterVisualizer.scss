@@ -1,0 +1,14 @@
+.character-visualizer {
+  border: solid 1px #dfe2e7;
+  $width-base: 282px;
+  $height-base: 375px;
+
+  width: $width-base;
+  height: $height-base;
+  border: solid 1px #dfe2e7;
+  & .base {
+    width: $width-base;
+    height: $height-base;
+    border: solid 1px #dfe2e7;
+  }
+}

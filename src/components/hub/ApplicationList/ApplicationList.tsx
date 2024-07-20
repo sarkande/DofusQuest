@@ -1,14 +1,16 @@
 import '@styles/components/ApplicationList.scss';
+
 import ApplicationItem from '../ApplicationItem/ApplicationItem';
 import { ApplicationItemProps } from '@interfaces/ApplicationItem';
-import questIcon from 'assets/images/icon_quest.png';
-import naioIcon from 'assets/images/icon_naio.png';
-import craftIcon from 'assets/images/icon_craft.png';
-import almanaxIcon from 'assets/images/icon_almanax.png';
-import tutoIcon from 'assets/images/icon_tuto.png';
-import notesIcon from 'assets/images/icon_notes.png';
-import portalIcon from 'assets/images/icon_portal.png';
-import settingsIcon from 'assets/images/icon_settings.png';
+
+import questIcon from '@images/icons/icon_quest.png';
+import naioIcon from '@images/icons/icon_naio.png';
+import craftIcon from '@images/icons/icon_craft.png';
+import almanaxIcon from '@images/icons/icon_almanax.png';
+import tutoIcon from '@images/icons/icon_tuto.png';
+import notesIcon from '@images/icons/icon_notes.png';
+import portalIcon from '@images/icons/icon_portal.png';
+import settingsIcon from '@images/icons/icon_settings.png';
 
 
 function ApplicationList() {
