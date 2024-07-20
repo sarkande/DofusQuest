@@ -20,7 +20,7 @@ function createWindow() {
       contextIsolation: false, // Assurez-vous que contextIsolation est false pour IPC
     },
   });
-
+  win.removeMenu();
   if (app.isPackaged) {
     // 'build/index.html'
     win.loadURL(`file://${__dirname}/../index.html`);
@@ -52,7 +52,7 @@ function createChildWindow(route: string) {
       contextIsolation: false,
     },
   });
-
+  childWin.removeMenu();
   if (app.isPackaged) {
     childWin.loadURL(`file://${__dirname}/../index.html#/${route}`);
   } else {

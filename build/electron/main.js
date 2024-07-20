@@ -19,6 +19,7 @@ function createWindow() {
             contextIsolation: false, // Assurez-vous que contextIsolation est false pour IPC
         },
     });
+    win.removeMenu();
     if (electron_1.app.isPackaged) {
         // 'build/index.html'
         win.loadURL("file://".concat(__dirname, "/../index.html"));
@@ -49,6 +50,7 @@ function createChildWindow(route) {
             contextIsolation: false,
         },
     });
+    childWin.removeMenu();
     if (electron_1.app.isPackaged) {
         childWin.loadURL("file://".concat(__dirname, "/../index.html#/").concat(route));
     }
