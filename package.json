@@ -21,10 +21,13 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^18.13.0",
     "@types/react": "^18.0.28",
+    "@types/react-bootstrap": "^0.32.37",
     "@types/react-dom": "^18.0.11",
+    "bootstrap": "^5.3.3",
     "electron-devtools-installer": "^3.2.0",
     "electron-reload": "^1.5.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.10.4",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.25.1",
     "react-scripts": "5.0.1",
@@ -44,8 +47,7 @@
     "extends": null,
     "files": [
       "build/**/*",
-      "datas/**/*" 
-
+      "datas/**/*"
     ],
     "directories": {
       "buildResources": "assets"
