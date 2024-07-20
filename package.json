@@ -43,7 +43,9 @@
   "build": {
     "extends": null,
     "files": [
-      "build/**/*"
+      "build/**/*",
+      "datas/**/*" 
+
     ],
     "directories": {
       "buildResources": "assets"

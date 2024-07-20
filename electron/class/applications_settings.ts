@@ -1,29 +1,34 @@
 import { ApplicationSettingItem } from "./application_setting_item";
 import { IApplicationSettingItem } from "../interfaces/application_setting_item";
 import * as fs from "fs";
+import * as path from "path";
+import { app } from "electron";
 
 export class ApplicationSettings {
   applicationSettings: ApplicationSettingItem[] = [];
+
   constructor() {
     this.fetchApplicationSettings();
   }
 
   addApplicationSetting(applicationSettingItem: IApplicationSettingItem) {
     const newApplicationSetting = new ApplicationSettingItem(applicationSettingItem);
-
     this.applicationSettings.push(newApplicationSetting);
     console.log("Application setting added:", newApplicationSetting.title);
   }
+
   findApplicationSettingItemByRoute(route: string): ApplicationSettingItem | false {
     return this.applicationSettings.find((item) => item.route === route) ?? false;
   }
 
   async fetchApplicationSettings() {
     try {
-      console.log("Current working directory:", process.cwd());
+      const isDev = process.env.NODE_ENV === "development";
+      const basePath = isDev ? path.join(__dirname, "..", "..", "..") : app.getAppPath();
+      const filePath = path.join(basePath, "datas", "applications_settings.json");
 
       // Lire le fichier JSON avec fs.promises.readFile
-      const data = await fs.promises.readFile("datas/applications_settings.json", { encoding: "utf-8" });
+      const data = await fs.promises.readFile(filePath, { encoding: "utf-8" });
 
       // Parser le JSON
       const applicationSettings = JSON.parse(data);
@@ -44,6 +49,7 @@ export class ApplicationSettings {
       console.error("Error:", error);
     }
   }
+
   isValidApplicationSettingItem(item: any): item is IApplicationSettingItem {
     const windowSizeKeys: (keyof IApplicationSettingItem["windowSize"])[] = ["width", "height"];
     const mainKeys: (keyof IApplicationSettingItem)[] = ["title", "imageSrc", "route", "windowSize"];
@@ -74,6 +80,7 @@ export class ApplicationSettings {
 
     return true;
   }
+
   editApplicationSettingItem(applicationSettingItem: IApplicationSettingItem) {
     //find the application setting item in the array
     //change the values
@@ -86,9 +93,14 @@ export class ApplicationSettings {
 
     this.exportApplicationSettings();
   }
+
   exportApplicationSettings() {
+    const isDev = process.env.NODE_ENV === "development";
+    const basePath = isDev ? path.join(__dirname, "..", "..", "..") : app.getAppPath();
+    const filePath = path.join(basePath, "datas", "applications_settings.json");
+
     //use fs to write the application settings to the json file, we need to replace the file
-    fs.writeFile("datas/applications_settings.json", JSON.stringify(this.applicationSettings), (err: any) => {
+    fs.writeFile(filePath, JSON.stringify(this.applicationSettings), (err: any) => {
       if (err) {
         console.error("Error:", err);
       }
